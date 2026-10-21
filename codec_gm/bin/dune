@@ -1,0 +1,4 @@
+(executables
+ (names dump_tables slice_trace enc dec)
+ (flags (:standard -warn-error -a))
+ (libraries codec_gm))

@@ -1,0 +1,3 @@
+(library
+ (name codec_gm)
+ (flags (:standard -warn-error -a)))

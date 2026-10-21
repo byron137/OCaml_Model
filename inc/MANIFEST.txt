@@ -1,0 +1,87 @@
+Codec V1.6 LUT include files, packaged from the claude.ai project docs (2026-10-21).
+
+rtl/  : drop-in replacement for the RTL image_codec/*.inc set (20 files)
+derived/ : candidate file, not used by the RTL as-is
+
+STATUS PER FILE
+  codebook_cdf/km/ks/r.inc, quant_table_res/dec_00..05.inc, quant_anchor_00..02.inc
+      identical in content to the project docs (line counts and byte sizes match
+      the earlier project copy; no trailing newline, as in the project).
+  anchor_fullcase.inc  REPAIRED
+      The project copy is truncated: it stops in the middle of entry
+      [2*MAX_RES_NUM + 408] and ends with 75 bytes of unrelated non-ASCII text.
+      Lines 1..1432 here are the project entries (regenerated; the project file
+      size 115277 B is reproduced exactly when the truncated tail is re-appended).
+      Lines 1433..1536 = table 2, addr 408..511 (res +152..+255) are RECONSTRUCTED
+      by sign symmetry: in tables 1 and 2 level(+r) == level(-r) for every
+      pair present in the project copy, and v_hi/v_lo = +-quant_anchor_02[level],
+      [level-1] as for every existing entry. Result: res 152..159 L4 (128,64),
+      160..215 L5 (192,128), 216..246 L6 (240,192), 247..255 L7 (254,240).
+      Confirm against the RTL repository copy before tape-out use.
+  codebook_ks.inc  KNOWN INCONSISTENT (kept verbatim)
+      cdf spacing != 2^ks for the entries below, so encoder bit lengths disagree
+      with codebook_r.inc (decoder). Book 12 symbol 8 is the macro book's unused
+      escape and is expected. derived/codebook_ks.derived.inc fixes the rest:
+        book  0 symbol  2 : ks 1 -> 5
+        book  0 symbol  3 : ks 1 -> 3
+        book  0 symbol  4 : ks 1 -> 3
+        book  0 symbol  5 : ks 1 -> 3
+        book  0 symbol  6 : ks 1 -> 3
+        book  0 symbol  8 : ks 0 -> 1
+        book  0 symbol  9 : ks 0 -> 1
+        book  0 symbol 10 : ks 0 -> 1
+        book  0 symbol 11 : ks 0 -> 1
+        book  0 symbol 12 : ks 0 -> 1
+        book  1 symbol  3 : ks 1 -> 5
+        book  1 symbol  4 : ks 1 -> 5
+        book  1 symbol  5 : ks 1 -> 5
+        book  1 symbol  6 : ks 1 -> 5
+        book  1 symbol  8 : ks 0 -> 1
+        book  1 symbol  9 : ks 0 -> 1
+        book  1 symbol 10 : ks 0 -> 1
+        book  1 symbol 11 : ks 0 -> 1
+        book  1 symbol 12 : ks 0 -> 1
+        book  2 symbol  2 : ks 5 -> 1
+        book  2 symbol  3 : ks 5 -> 1
+        book  2 symbol  4 : ks 5 -> 1
+        book  2 symbol  5 : ks 5 -> 1
+        book  2 symbol  6 : ks 5 -> 1
+        book  2 symbol  8 : ks 0 -> 5
+        book  2 symbol  9 : ks 0 -> 5
+        book  2 symbol 10 : ks 0 -> 5
+        book  2 symbol 11 : ks 0 -> 5
+        book  2 symbol 12 : ks 0 -> 5
+        book  4 symbol  6 : ks 1 -> 2
+        book  4 symbol 12 : ks 0 -> 1
+        book  5 symbol  6 : ks 1 -> 4
+        book  5 symbol 12 : ks 0 -> 1
+        book  6 symbol  3 : ks 4 -> 3
+        book  8 symbol  3 : ks 2 -> 1
+        book  8 symbol  5 : ks 1 -> 0
+        book  9 symbol  3 : ks 3 -> 1
+        book  9 symbol  5 : ks 1 -> 0
+        book 10 symbol  2 : ks 3 -> 2
+        book 10 symbol  5 : ks 2 -> 0
+
+file                                  bytes  sha256[:16]
+rtl/anchor_fullcase.inc              123466  a5bff93e55476ebf
+rtl/codebook_cdf.inc                   4409  e5f20c0ce3908e50
+rtl/codebook_km.inc                     541  e7e13b3ecf9c20ec
+rtl/codebook_ks.inc                    3538  e20429fbdea8067b
+rtl/codebook_r.inc                    36054  3b0e09c77f745174
+rtl/quant_anchor_00.inc                 843  0deb906153834b89
+rtl/quant_anchor_01.inc                 820  d457165506a103d8
+rtl/quant_anchor_02.inc                 809  7e8d60c28b1c1baa
+rtl/quant_table_dec_00.inc              842  064ca390aaf277a3
+rtl/quant_table_dec_01.inc              844  4b303531b38156c1
+rtl/quant_table_dec_02.inc              821  c7f8ce86a876856c
+rtl/quant_table_dec_03.inc              822  e0fff7a029a7f12e
+rtl/quant_table_dec_04.inc              808  336d9bea31ff20db
+rtl/quant_table_dec_05.inc              807  98540b4ae8273c5c
+rtl/quant_table_res_00.inc              842  1118b586519ab098
+rtl/quant_table_res_01.inc              844  a3a42da2fe4c4781
+rtl/quant_table_res_02.inc              821  79d20d14b937275a
+rtl/quant_table_res_03.inc              822  b41ad1c7e7c843e6
+rtl/quant_table_res_04.inc              809  486deb0f7ee90b8b
+rtl/quant_table_res_05.inc              809  7e8d60c28b1c1baa
+derived/codebook_ks.derived.inc        3769  0431642608923807
