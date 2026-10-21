@@ -1,1 +1,0 @@
-lib/color.mli: Types

@@ -1,1 +1,0 @@
-lib/bmp.mli: Types
