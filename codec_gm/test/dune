@@ -1,7 +1,7 @@
 ; Property tests need qcheck-core; the stanza is skipped when it is absent so
 ; `dune build` of the library and executables never depends on it.
 (tests
- (names test_codec test_lossy_core test_stream test_slice test_rdo test_frame)
+ (names test_codec test_lossy_core test_stream test_slice test_rdo test_frame test_xcodec)
  (flags (:standard -warn-error -a))
  (libraries codec_gm qcheck-core qcheck-core.runner)
  (enabled_if %{lib-available:qcheck-core})

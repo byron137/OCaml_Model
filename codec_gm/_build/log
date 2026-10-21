@@ -1,0 +1,21 @@
+# dune build --profile release
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /root/.cache/dune/db
+# Workspace root: /home/user/ocaml_model/codec_gm
+# Auto-detected concurrency: 4
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Release
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map { "INSIDE_DUNE" : "/home/user/ocaml_model/codec_gm/_build/default" }
+#  ; instrument_with = []
+#  }
+$ /usr/bin/ocamlc.opt -config > /tmp/dune_d5b9d4_output
+$ (cd _build/default && /usr/bin/ocamldep.opt -modules -impl test/test_xcodec.ml) > _build/default/test/.test_codec.eobjs/dune__exe__Test_xcodec.impl.d
+$ (cd _build/default && /usr/bin/ocamlopt.opt -w -40 -warn-error -a -g -I test/.test_codec.eobjs/byte -I test/.test_codec.eobjs/native -I /usr/lib/ocaml/qcheck-core -I /usr/lib/ocaml/qcheck-core/runner -I lib/.codec_gm.objs/byte -I lib/.codec_gm.objs/native -intf-suffix .ml -no-alias-deps -open Dune__exe -o test/.test_codec.eobjs/native/dune__exe__Test_xcodec.cmx -c -impl test/test_xcodec.ml)
+$ (cd _build/default && /usr/bin/ocamlopt.opt -w -40 -warn-error -a -g -o test/test_xcodec.exe lib/codec_gm.cmxa /usr/lib/ocaml/unix.cmxa -I /usr/lib/ocaml /usr/lib/ocaml/qcheck-core/qcheck_core.cmxa /usr/lib/ocaml/qcheck-core/runner/qcheck_runner.cmxa test/.test_codec.eobjs/native/dune__exe.cmx test/.test_codec.eobjs/native/dune__exe__Test_xcodec.cmx)

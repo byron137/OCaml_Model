@@ -26,3 +26,20 @@ val error_heatmap : ?gain:int -> orig:Types.image -> recon:Types.image -> unit -
     ramp; default = the image's max error (so the hottest pixel is white). *)
 
 val to_json : t -> string
+
+(* ---- experimental additions (spec 0.4) ---- *)
+
+val ciede2000_lab : (float * float * float) -> (float * float * float) -> float
+(** CIEDE2000 between two CIELAB triples. *)
+
+val ciede2000_pixel : (int * int * int) -> (int * int * int) -> float
+(** CIEDE2000 between two sRGB triples (D65, 2 degree observer, kL=kC=kH=1). *)
+
+val ciede2000 : orig:Types.image -> recon:Types.image -> float * float
+(** (mean, 99th percentile) of the per-pixel CIEDE2000. *)
+
+val residual_entropy : int array -> float
+(** Empirical entropy, bits/symbol, of a symbol or residual stream; 0 for empty. *)
+
+val heatmap32 : orig:Types.image -> recon:Types.image -> Types.image
+(** [error_heatmap] with the ramp fixed to 0..32 (spec 0.4). *)

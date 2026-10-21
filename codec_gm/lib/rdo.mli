@@ -68,3 +68,6 @@ val rlc_stats : zero:bool array -> palette:bool array -> int * int
 
 val symbol_cost : Tables.codebook -> int -> int
 (** km - ks.(symbol) *)
+
+val scan_orders : int   (** 4: scanner datapaths at orders 0..3 *)
+val candidates : int    (** 12: idx 0..11; 12 is the fallback *)
