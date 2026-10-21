@@ -1,0 +1,1 @@
+name=E1.1 structure=serial m1=m1b seg=20 force_macro=true books=shared slice=2 target=24 table_num=4 rlc=true palette=false

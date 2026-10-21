@@ -50,3 +50,16 @@ dune exec bin/dump_tables.exe -- /path/to/rtl/image_codec
 dune exec bin/slice_trace.exe -- /path/to/rtl/image_codec --idx 3 --cb 3 --table-num 4
 dune exec bin/slice_trace.exe -- /path/to/rtl/image_codec --in my_slice.txt --out dec.txt --idx 1
 ```
+
+## Experimental layer (spec: 水平降取樣與插值預測改進)
+- `lib/interp` — odd-sample kernels (Linear, QuadL/R, DD4, Wiener-k, Auto) and the luma-guided chroma β (M1c)
+- `lib/xcodec` — symbol-level slice codec: DPCM structures Serial (the model today) / Trunk4 / VariantA / VariantB,
+  emission orders, forward decoder, M1a/M1b/M1c macro chroma output, exact rANS bit accounting
+- `lib/xrdo` — arbiter replica (equals `Rdo.decide` for the default config), `lib/xbook` — offline dyadic codebooks
+- `bin/exp` — experiment runner, `bin/build_books` — codebook training; `test/test_xcodec` — property tests
+- `tools/run_experiments.sh` runs the E1/E2 grid, `tools/aggregate.py` builds `results/REPORT.md`;
+  conclusions in `results/CONCLUSION.md`; image set in `images/` (synthetic, `tools/gen_images.py`)
+```
+CODEC_INC_DIR=../inc/model dune test --profile release
+dune exec --profile release bin/exp.exe -- ../inc/model ../images/test ../results --name E2.1 --structure a --images
+```

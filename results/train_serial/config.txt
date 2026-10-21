@@ -1,0 +1,1 @@
+name=train_serial structure=serial m1=m1a seg=20 force_macro=false books=shared slice=2 target=24 table_num=4 rlc=true palette=false

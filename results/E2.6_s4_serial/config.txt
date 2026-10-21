@@ -1,0 +1,1 @@
+name=E2.6_s4_serial structure=serial m1=m1a seg=20 force_macro=false books=shared slice=4 target=12 table_num=4 rlc=true palette=false

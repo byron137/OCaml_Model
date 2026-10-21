@@ -1,0 +1,1 @@
+name=E2.6_s1_b structure=b m1=m1a seg=20 force_macro=false books=shared slice=1 target=48 table_num=4 rlc=true palette=false
