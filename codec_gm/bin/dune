@@ -1,4 +1,4 @@
 (executables
- (names dump_tables slice_trace enc dec)
+ (names dump_tables slice_trace enc dec exp build_books)
  (flags (:standard -warn-error -a))
  (libraries codec_gm))
